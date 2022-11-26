@@ -1,0 +1,17 @@
+정렬의 비교조건은 bool cmp() 함수를 사용해서 
+sort(a.begin(),a.end(),cmp); 로 설정할 수 있지만
+priority_queue 는 bool cmp() 함수를 사용하면 오류가 발생하기때문에
+struct cmp{
+    bool operator()(vector<int> a,vector<int> b){
+        if(a[1]==b[1]){
+            return a[0]>b[0];
+        }
+        return a[1]>b[1];
+    }  
+};
+처럼 따로 struct 를 만들어주고 대입해야한다.
+또한 priority_queue<자료형,컨테이너,비교함수> 로 인자를 받기때문에
+예를들어 벡터를 넣어주고 싶다면 
+priority_queue<vector<int>,vector<vector<int>>,cmp> pq;
+로 작성을 해주어야한다.
+우선순위 큐는 struct 를 만들어서 넣어준다는 것을 다시 
